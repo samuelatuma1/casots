@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="list-of-courses">
+    <div class="container">
+        <div class="list row ">
+            {% for courses in course %}
+            <div class="card list-card col-md-4" style="width: 18rem;">
+                <img class="card-img-top" src="{{courses.images.url}}" alt="Card image cap">
+                <div class="card-body">
+                <h3 class="card-title card-list-title">{{courses.name}}</h3>
+                <p class="card-text">{{courses.body}}</p>
+                <a href="{{ courses.get_absolute_url }}" class="btn btn-primary">View More</a>
+                </div>
+            </div>
+              {% endfor %}
+        </div>
+
+        <nav aria-label="Page navigation example">
+          {% if course.has_other_pages %}
+          <ul class="pagination justify-content-center">
+            {% if course.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{course.previous_page_number }}" tabindex="-1">Previous</a>
+            </li>
+            {% else %}
+            <li class="disabled"></li>
+           {% endif %}
+
+                {% for courses in course.paginator.page_range %}
+                  
+                  {% if course.number == courses %}
+                   <li class="page-item"><a class="page-link" href="?page={{courses}}">{{courses}}</a></li>    
+                  {% endif %}
+                {% endfor %}
+             
+                
+                {% if course.has_next %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{course.next_page_number }}">Next</a>
+              
+                </li>
+                {% else %}
+            <li class="disabled"></li>
+                {% endif %}
+          </ul>
+          {% endif %}
+
+        </nav>
+    </div>
+</section>
+<!--ending of list of courses -->
+
+<!-- sign up -->
+<section class="sign-up">
+  <div class="container">
+    <div class="signup">
+      <div class="subscribe">
+        <h1>sign up for more news and offer</h1>
+        <p>subscribe to the latest smartphone news & great deal offer</p>
+      </div>
+      <div class="email">
+          <form action="">
+            <div class="input-group mb-3 row col-xs-2">
+              <div class="col-xs-2">
+              <input type="text" class="form-control col-xs-2" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+              </div>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">Button</button>
+              </div>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

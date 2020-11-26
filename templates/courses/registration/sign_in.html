@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- login -->
+<section class="signin">
+    <div class="container justify-content-center d-flex align-items-center">
+      <div class="form">
+        <div class="signin-heading text-center">
+          <h2>Login to Casots</h2>
+        </div>
+        <form class="" method="post">
+          <div class="form-group mt-4">
+            <label for="exampleInputEmail1">Email address</label>
+            {{ form.email }}
+          </div>
+          <div class="form-group mt-4">
+            <label for="exampleInputPassword1">Password</label>
+            {{form.password}}
+           </div>
+          <div class="button text-center mt-4">
+          <button type="submit" class="btn btn-primary col-md-12 login-submit">Submit</button>
+          </div>
+
+          <div class="forget-password d-flex justify-content-between pt-4">
+            <div class="password">
+             
+              <a href="" class="password">
+              <i class="fa fa-lock " aria-hidden="true"></i>
+              <span>Forgotten password</span>
+            </a>
+            </div>
+            <div class="register-account">
+              <a href="" class="register-account">
+                <i class="fas fa-edit "></i>
+              <span>Register Account</span>
+              </a>
+              
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+</section>
+<!-- ending login -->
+
+<!-- footer -->
+
+
+{% endblock content %}
