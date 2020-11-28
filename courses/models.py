@@ -43,7 +43,9 @@ class Courses(models.Model):
     def __str__(self):
         return self.name
     
-# my code 
+# my code  
+
+#quiz profiles for users
 class QuizProfile(models.Model):
     User = models.OneToOneField(User,on_delete=models.CASCADE)
     first_name=models.CharField(max_length=100)
@@ -54,12 +56,16 @@ class QuizProfile(models.Model):
     def __str__(self):
         return f'{first_name} {last_name}'
     
+    
+# question  model
 class Question(models.Model):
     NUMBER_OF_CHOICES = 4
     question = models.TextField()
     question_mark = models.DecimalField(default=0, decimal_places=2, max_digits=6)
     course = models.ForeignKey(Courses, on_delete=models.CASCADE)
 
+
+# answer fields
 class Answer(models.Model):
     QUESTION_ANSWER={
         ('A','a'),
