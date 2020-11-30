@@ -18,18 +18,22 @@ class CoursesAdmin(admin.ModelAdmin):
     prepopulated_fields={'slug':('name',)}
     
 # Register your models here.
+@admin.register(Quiz)
+class Quiz(admin.ModelAdmin):
+    list_display = ['course', 'instruction']
 
+@admin.register(QuizQuestion)
+class QuizQuestionAdmin(admin.ModelAdmin):
+    list_display=['question','question_mark', 'course']
+    prepopulated_fields={'slug':('question',)}
+    search_fields = ['question']
 
-@admin.register(QuizProfile)
-class QuizProfileAdmin(admin.ModelAdmin):
-    list_display=['first_name','last_name','total_score']
+class ChoiceInline(admin.TabularInline):
+    model = QuestionChoice
+    
+@admin.register(QuestionAnswer)
+class QuestionAnswerAmin(admin.ModelAdmin):
+    list_display = ['question' ,'correct_choice', 'solution' ]
+# class ChoiceInline(admin.TabularInline):
+#     model = 
 
-@admin.register(Question)
-class QuizProfileAdmin(admin.ModelAdmin):
-        list_display =['question', 'course', 'question_mark']
-
-
-
-@admin.register(Answer)
-class AnswerAdmin(admin.ModelAdmin):
-    list_display=['question', 'correct_option', 'solution', 'answer_marks']
