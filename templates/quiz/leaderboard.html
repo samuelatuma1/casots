@@ -17,17 +17,9 @@
             </tr>
         </thead>
         <tbody>
-            {% for quiz_profile in top_quiz_profiles %}
             <tr>
-                <td>{{ forloop.counter }}</td>
-                <td>{{ quiz_profile.user.username }}</td>
-                <td>{{ quiz_profile.total_score }}</td>
-                <td>{{ quiz_profile.total_attempts }}</td>
-                <td>{{ quiz_profile.correct_attempts }}</td>
-                <td>{{ quiz_profile.success_rate|floatformat:2 }}%</td>
-                <td>{{ quiz_profile.modified|naturaltime }}</td>
+                
             </tr>
-            {% endfor %}
         </tbody>
     </table>
 </div>

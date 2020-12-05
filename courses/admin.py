@@ -12,7 +12,6 @@ class CategoryAdmin(admin.ModelAdmin):
     
     
 @admin.register(Courses)
-
 class CoursesAdmin(admin.ModelAdmin):
     list_display=['name','slug']
     prepopulated_fields={'slug':('name',)}
@@ -21,6 +20,9 @@ class CoursesAdmin(admin.ModelAdmin):
 @admin.register(Quiz)
 class Quiz(admin.ModelAdmin):
     list_display = ['course', 'instruction']
+    prepopulated_fields={'slug':('description',)}
+    
+
 
 @admin.register(QuizQuestion)
 class QuizQuestionAdmin(admin.ModelAdmin):
@@ -28,12 +30,7 @@ class QuizQuestionAdmin(admin.ModelAdmin):
     prepopulated_fields={'slug':('question',)}
     search_fields = ['question']
 
-class ChoiceInline(admin.TabularInline):
-    model = QuestionChoice
+@admin.register(QuestionChoice)
+class QuizChoiceAdmin(admin.ModelAdmin):
+    list_display=['question']
     
-@admin.register(QuestionAnswer)
-class QuestionAnswerAmin(admin.ModelAdmin):
-    list_display = ['question' ,'correct_choice', 'solution' ]
-# class ChoiceInline(admin.TabularInline):
-#     model = 
-

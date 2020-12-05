@@ -76,15 +76,29 @@ class QuizQuestion(models.Model):
         return self.question
 
 # question choice
+
+    
+ANSWER_CHOICES=[
+    ('A','A'),
+    ('B','B'),
+    ('C','C'),
+    ('D','D')
+]
+
 class QuestionChoice(models.Model):
     question =models.ForeignKey(QuizQuestion,on_delete=models.CASCADE)
-    option = models.TextField()
-    is_correct = models.BooleanField(default=False)
+    option_a = models.CharField(max_length=500, blank=False, null=False)
+    option_b = models.CharField(max_length=500, blank=False, null=False)
+    option_c = models.CharField(max_length=500, blank=False, null=False)
+    option_d = models.CharField(max_length=500, blank=False, null=False)
+    correct_answer = models.CharField(default=False , null=False, max_length=2, choices=ANSWER_CHOICES)
+
+    def __str__(self):
+        return self.question.statement
 
 # quiz answers
 class QuestionAnswer(models.Model):
-    question = models.ForeignKey(QuizQuestion, on_delete=models.CASCADE)
-    is_correct = models.BooleanField(default=False)
-    correct_choice = models.ForeignKey(QuestionChoice, max_length=20 ,on_delete=models.CASCADE)
-    answer_marks = models.DecimalField(default=0, decimal_places=2, max_digits=6)
-    solution = models.TextField()
+    user =models.ForeignKey(QuizProfile , on_delete=models.CASCADE)
+    questions = models.ForeignKey(QuizQuestion, on_delete=models.CASCADE)
+    answer = models.ForeignKey(QuestionChoice,on_delete=models.CASCADE)
+    question_mark = models.DecimalField(default=0, decimal_places=2, max_digits=6)
